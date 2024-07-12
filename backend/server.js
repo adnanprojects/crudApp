@@ -7,14 +7,13 @@ import { usersRoutes } from './routes/usersRoutes.js';
 const app = express();
 
 app.use(express.json());
-
-mongoose.connect('mongodb://localhost:27017', { dbName: 'crud_db' })
-    .then(() => console.log('db connected!'))
-    .catch((error) => console.log('Error', error));
-
 app.use('/api/posts', postsRoutes);
 app.use('/api/users', usersRoutes);
 
-const PORT = process.env.PORT || 3000;
+// DB connection
+mongoose.connect(process.env.MONGO_URI)
+    .then(() => app.listen(PORT, 'localhost', () => console.log(`Server is running on PORT ${PORT}`)))
+    .catch((error) => console.log('Error', error));
 
-app.listen(PORT, 'localhost', () => console.log(`Server is running on PORT ${PORT}`));
+
+const PORT = process.env.PORT || 4000;
