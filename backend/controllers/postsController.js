@@ -14,7 +14,7 @@ const getPosts = async (request, response) => {
 const userPosts = async (request, response) => {
     try {
         const posts = await Post.find({ userId: request.user.id });
-        response.status(200).json({ posts });
+        response.status(200).json({ posts, email: request.user.email });
     } catch (error) {
         response.status(500).json({ error: error.message });
     }
