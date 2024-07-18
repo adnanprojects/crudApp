@@ -41,9 +41,9 @@ const deletePost = async (request, response) => {
     if (!post)
         return response.status(400).json({ error: 'Post is not available' });
 
-    const user = await User.findById(request.user.id);
-    if (!post.user.equals(user))
-        return response.status(401).json({ error: 'Not authorized' });
+    // const user = await User.findById(request.user._id);
+    // if (!post.user.equals(user))
+    //     return response.status(401).json({ error: 'Not authorized' });
 
     try {
         await post.deleteOne();
