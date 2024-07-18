@@ -15,5 +15,4 @@ mongoose.connect(process.env.MONGO_URI)
     .then(() => app.listen(PORT, 'localhost', () => console.log(`Server is running on PORT ${PORT}`)))
     .catch((error) => console.log('Error', error));
 
-
 const PORT = process.env.PORT || 5000;
